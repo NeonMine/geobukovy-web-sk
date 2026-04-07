@@ -6,25 +6,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSending(true);
-
-    // Construct mailto link and open it
     const subject = encodeURIComponent(`Dopyt od ${formData.name} — Geobukovy`);
     const body = encodeURIComponent(
       `Meno: ${formData.name}\nEmail: ${formData.email}\n\nSpráva:\n${formData.message}`
     );
     window.open(`mailto:geobukovy@gmail.com?subject=${subject}&body=${body}`, "_self");
-
     setTimeout(() => {
       setSending(false);
       setSubmitted(true);
@@ -37,34 +30,34 @@ const ContactForm = () => {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-      className="max-w-xl mx-auto mt-16"
+      transition={{ duration: 0.7 }}
     >
-      <div className="bg-background/10 backdrop-blur-sm rounded-2xl p-8 border border-primary-foreground/20">
-        <h3 className="text-2xl font-display text-center mb-6">Napíšte nám</h3>
+      <div className="bg-card rounded-2xl p-8 md:p-10 shadow-lg border">
+        <h3 className="text-2xl font-display text-foreground mb-2">Napíšte nám</h3>
+        <p className="text-muted-foreground text-sm mb-8">Odpovieme vám čo najskôr</p>
 
         {submitted ? (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center gap-4 py-8"
+            className="flex flex-col items-center gap-4 py-12"
           >
-            <CheckCircle className="w-16 h-16 text-accent" />
-            <p className="text-primary-foreground text-lg font-semibold">Ďakujeme za správu!</p>
-            <p className="text-primary-foreground/70 text-center">
-              Váš emailový klient by sa mal otvoriť s predvyplnenou správou. Odošlite ju prosím.
+            <CheckCircle className="w-16 h-16 text-primary" />
+            <p className="text-foreground text-lg font-semibold">Ďakujeme za správu!</p>
+            <p className="text-muted-foreground text-center text-sm">
+              Váš emailový klient by sa mal otvoriť s predvyplnenou správou.
             </p>
             <button
               onClick={() => setSubmitted(false)}
-              className="mt-4 text-accent hover:underline transition-colors"
+              className="mt-4 text-primary hover:text-accent transition-colors font-medium text-sm"
             >
               Odoslať ďalšiu správu
             </button>
           </motion.div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
-              <Label htmlFor="name" className="text-primary-foreground/80 mb-2 block">
+              <Label htmlFor="name" className="text-foreground/80 mb-2 block text-sm">
                 Meno a priezvisko
               </Label>
               <Input
@@ -73,11 +66,11 @@ const ContactForm = () => {
                 placeholder="Ján Novák"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="bg-background/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent"
+                className="h-12 rounded-xl"
               />
             </div>
             <div>
-              <Label htmlFor="email" className="text-primary-foreground/80 mb-2 block">
+              <Label htmlFor="email" className="text-foreground/80 mb-2 block text-sm">
                 Váš email
               </Label>
               <Input
@@ -87,11 +80,11 @@ const ContactForm = () => {
                 placeholder="jan.novak@email.com"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="bg-background/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent"
+                className="h-12 rounded-xl"
               />
             </div>
             <div>
-              <Label htmlFor="message" className="text-primary-foreground/80 mb-2 block">
+              <Label htmlFor="message" className="text-foreground/80 mb-2 block text-sm">
                 Vaša správa
               </Label>
               <Textarea
@@ -101,15 +94,15 @@ const ContactForm = () => {
                 placeholder="Opíšte, čo potrebujete..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="bg-background/20 border-primary-foreground/30 text-primary-foreground placeholder:text-primary-foreground/40 focus:border-accent resize-none"
+                className="rounded-xl resize-none"
               />
             </div>
             <motion.button
               type="submit"
               disabled={sending}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              className="bg-accent text-accent-foreground py-3 px-6 rounded-lg font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity disabled:opacity-60"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-accent text-accent-foreground py-3.5 px-6 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 transition-shadow disabled:opacity-60"
             >
               <Send className="w-5 h-5" />
               {sending ? "Odosielam..." : "Odoslať správu"}
