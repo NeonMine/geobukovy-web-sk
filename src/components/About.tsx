@@ -29,7 +29,8 @@ const About = () => {
           >
             <h2 className="text-4xl md:text-5xl font-display text-foreground mb-6">O nás</h2>
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Ing. Tomáš Bukový, PhD. — autorizovaný geodet s dlhoročnou praxou v oblasti geodézie a kartografie.
+              <strong className="text-foreground">Ing. Tomáš Bukový, PhD. GEO2</strong> — Geodetická kancelária, inžiniering.
+              Autorizovaný geodet s dlhoročnou praxou v oblasti geodézie a kartografie.
               Mojím cieľom je poskytovať presné, spoľahlivé a rýchle geodetické služby pre mojich klientov.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
@@ -43,6 +44,15 @@ const About = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
+                <div className="text-3xl font-display text-primary">41</div>
+                <div className="text-muted-foreground text-sm mt-1">rokov skúseností so životom</div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.45 }}
+              >
                 <div className="text-3xl font-display text-primary">100%</div>
                 <div className="text-muted-foreground text-sm mt-1">spokojnosť klientov</div>
               </motion.div>
@@ -50,7 +60,7 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.45 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
               >
                 <div className="text-3xl font-display text-primary">Orava</div>
                 <div className="text-muted-foreground text-sm mt-1">a celé Slovensko</div>
