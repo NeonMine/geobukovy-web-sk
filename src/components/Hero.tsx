@@ -27,12 +27,20 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-lg md:text-xl text-primary-foreground/80 mb-2 font-body"
         >
-          Ing. Tomáš Bukový, PhD.
+          Ing. Tomáš Bukový, PhD. GEO2
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          className="text-base md:text-lg text-primary-foreground/70 mb-2 font-body"
+        >
+          Geodetická kancelária, inžiniering
+        </motion.p>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           className="text-xl md:text-2xl text-primary-foreground/85 max-w-2xl mx-auto mb-10 font-body"
         >
           Profesionálne geodetické služby s presnosťou a spoľahlivosťou
@@ -40,7 +48,7 @@ const Hero = () => {
         <motion.a
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 0.55, ease: "easeOut" }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.97 }}
           href="#kontakt"

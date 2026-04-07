@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import ContactForm from "./ContactForm";
 
 const containerVariants = {
   hidden: {},
@@ -65,6 +66,8 @@ const Contact = () => {
             <p className="text-primary-foreground/80">Rabča 327</p>
           </motion.div>
         </motion.div>
+
+        <ContactForm />
       </div>
     </section>
   );
