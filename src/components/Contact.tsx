@@ -8,7 +8,6 @@ const contactInfo = [
     title: "Telefón",
     items: [
       { text: "0948 148 341", href: "tel:+421948148341" },
-      { text: "0908 978 591", href: "tel:+421908978591" },
     ],
   },
   {
