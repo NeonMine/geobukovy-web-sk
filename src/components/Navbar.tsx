@@ -41,7 +41,7 @@ const Navbar = () => {
           />
           <div>
             <span className={`text-2xl font-display font-bold transition-colors ${scrolled ? "text-primary" : "text-primary-foreground"}`}>
-              Geobukovy
+              GeoBukový
             </span>
             <span className={`block text-[10px] tracking-widest uppercase font-body transition-colors ${scrolled ? "text-muted-foreground" : "text-primary-foreground/60"}`}>
               Geodetická kancelária

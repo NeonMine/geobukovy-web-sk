@@ -35,7 +35,7 @@ const Hero = () => {
             transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="text-6xl md:text-8xl lg:text-9xl font-display text-primary-foreground mb-6 leading-[0.9]"
           >
-            Geo<span className="text-accent">bukovy</span>
+            Geo<span className="text-accent">Bukový</span>
           </motion.h1>
 
           <motion.p

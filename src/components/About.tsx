@@ -53,7 +53,7 @@ const About = () => {
                   height={1000}
                 />
                 <div className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground rounded-2xl p-6 shadow-xl">
-                  <div className="text-3xl font-display font-bold">41</div>
+                  <div className="text-3xl font-display font-bold">15</div>
                   <div className="text-xs opacity-80">rokov</div>
                 </div>
               </div>

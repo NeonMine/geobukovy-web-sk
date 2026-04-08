@@ -7,7 +7,7 @@ const Footer = () => (
     <div className="container px-4">
       <div className="grid md:grid-cols-3 gap-12 mb-12">
         <div>
-          <h3 className="text-xl font-display mb-4">Geobukovy</h3>
+          <h3 className="text-xl font-display mb-4">GeoBukový</h3>
           <p className="text-primary-foreground/50 text-sm leading-relaxed">
             Ing. Tomáš Bukový, PhD. GEO2<br />
             Geodetická kancelária, inžiniering
@@ -38,7 +38,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="border-t border-primary-foreground/10 pt-8 text-center text-primary-foreground/30 text-xs">
-        © {new Date().getFullYear()} Geobukovy — Ing. Tomáš Bukový, PhD. GEO2. Všetky práva vyhradené.
+        © {new Date().getFullYear()} GeoBukový — Ing. Tomáš Bukový, PhD. GEO2. Všetky práva vyhradené.
       </div>
     </div>
   </footer>
