@@ -1,211 +1,204 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, MapPin, Ruler, FileText } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: 0.05 * i, ease: [0.22, 1, 0.36, 1] as const },
+  }),
+};
 
 const Hero = () => {
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* HERO */}
+      <section className="relative min-h-[92vh] flex items-end pb-20 pt-32 overflow-hidden bg-background">
         <img
           src={heroBg}
-          alt="Geodetické meranie v krajine"
-          className="absolute inset-0 w-full h-full object-cover scale-105"
-          width={1920}
-          height={1080}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-foreground/70 via-foreground/50 to-foreground/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/30 to-transparent" />
 
-        <div className="relative z-10 container text-center px-4 py-32">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-block mb-6"
-          >
-            <span className="inline-block px-5 py-2 text-xs font-semibold tracking-[0.2em] uppercase bg-accent/20 text-accent border border-accent/30 rounded-full backdrop-blur-sm">
-              Geodetická kancelária, inžiniering
-            </span>
-          </motion.div>
+        <div className="container relative z-10 grid md:grid-cols-12 gap-8 items-end">
+          <div className="md:col-span-8">
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={0}
+              className="flex items-center gap-3 mb-6"
+            >
+              <span className="hairline" />
+              <span className="eyebrow">Autorizovaný geodet · GEO2</span>
+            </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl lg:text-9xl font-display text-primary-foreground mb-6 leading-[0.9]"
-          >
-            Geo<span className="text-accent">Bukový</span>
-          </motion.h1>
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={1}
+              className="font-display text-[13vw] leading-[0.95] md:text-[8rem] lg:text-[9.5rem] text-foreground"
+            >
+              GeoBukový<span className="text-accent">.</span>
+            </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="text-lg md:text-xl text-primary-foreground/70 mb-2 font-body"
-          >
-            Ing. Tomáš Bukový, PhD. GEO2
-          </motion.p>
+            <motion.p
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={2}
+              className="mt-6 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed"
+            >
+              Ing. Tomáš Bukový, PhD. — geodetická kancelária s pätnástimi rokmi
+              praxe v oblasti geometrických plánov, vytyčovania a inžinierskej geodézie.
+            </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-base md:text-lg text-primary-foreground/50 max-w-lg mx-auto mb-12 font-body"
-          >
-            Profesionálne geodetické služby s presnosťou a spoľahlivosťou
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.55 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link to="/kontakt">
-              <motion.span
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 transition-shadow"
+            <motion.div
+              initial="hidden"
+              animate="show"
+              variants={fadeUp}
+              custom={3}
+              className="mt-10 flex flex-wrap items-center gap-4"
+            >
+              <Link
+                to="/kontakt"
+                className="group inline-flex items-center gap-3 bg-foreground text-background px-6 py-3.5 rounded-full text-sm font-medium hover:bg-primary transition-colors"
               >
-                Kontaktujte nás
-                <ArrowRight className="w-5 h-5" />
-              </motion.span>
-            </Link>
-            <Link to="/sluzby">
-              <motion.span
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center gap-2 bg-primary-foreground/10 text-primary-foreground px-8 py-4 rounded-xl text-lg font-semibold border border-primary-foreground/20 backdrop-blur-sm hover:bg-primary-foreground/20 transition-colors"
+                Nezáväzná konzultácia
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
+              <a
+                href="tel:+421948148341"
+                className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
               >
-                Naše služby
-              </motion.span>
-            </Link>
-          </motion.div>
+                <Phone className="w-4 h-4" />
+                0948 148 341
+              </a>
+            </motion.div>
+          </div>
         </div>
-
-        {/* Floating decorative cards */}
-        <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="hidden lg:block absolute bottom-32 left-12 animate-float"
-        >
-          <div className="glass rounded-2xl p-5 shadow-2xl">
-            <MapPin className="w-8 h-8 text-accent mb-2" />
-            <div className="text-sm font-semibold text-foreground">Orava</div>
-            <div className="text-xs text-muted-foreground">a celé Slovensko</div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="hidden lg:block absolute bottom-40 right-16 animate-float"
-          style={{ animationDelay: "2s" }}
-        >
-          <div className="glass rounded-2xl p-5 shadow-2xl">
-            <Ruler className="w-8 h-8 text-primary mb-2" />
-            <div className="text-sm font-semibold text-foreground">100%</div>
-            <div className="text-xs text-muted-foreground">presnosť meraní</div>
-          </div>
-        </motion.div>
       </section>
 
-      {/* Quick services preview */}
-      <section className="py-24 bg-background">
-        <div className="container px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
-            <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-[0.15em] uppercase text-accent bg-accent/10 rounded-full mb-4">
-              Čo ponúkame
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display text-foreground mb-4">
-              Geodetické služby
-            </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto">
-              Komplexné riešenia pre vaše geodetické potreby
-            </p>
-          </motion.div>
+      {/* MARQUEE / SERVICES STRIP */}
+      <section className="border-y border-border bg-background">
+        <div className="container py-6 flex flex-wrap items-center gap-x-10 gap-y-2 text-xs tracking-[0.18em] uppercase text-muted-foreground">
+          <span className="text-foreground/70 font-medium">Špecializácia</span>
+          {[
+            "Geometrické plány",
+            "Vytyčovanie",
+            "Adresné body",
+            "Kataster",
+            "Stavebné povolenia",
+            "Kolaudácie",
+          ].map((s) => (
+            <span key={s}>· {s}</span>
+          ))}
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      {/* INTRO */}
+      <section className="py-28 md:py-36 bg-background">
+        <div className="container grid md:grid-cols-12 gap-10">
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="hairline" />
+              <span className="eyebrow">Kto sme</span>
+            </div>
+          </div>
+          <div className="md:col-span-8">
+            <h2 className="font-display text-3xl md:text-5xl leading-[1.1] text-foreground">
+              Presné merania a spoľahlivá dokumentácia — od hraníc pozemku po kolaudáciu stavby.
+            </h2>
+            <div className="mt-10 grid sm:grid-cols-3 gap-8 border-t border-border pt-10">
+              {[
+                { k: "15", v: "rokov praxe" },
+                { k: "GEO2", v: "autorizácia" },
+                { k: "Orava", v: "a celé Slovensko" },
+              ].map((s) => (
+                <div key={s.v}>
+                  <div className="font-display text-4xl text-foreground">{s.k}</div>
+                  <div className="mt-1 text-sm text-muted-foreground">{s.v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SERVICES PREVIEW */}
+      <section className="border-t border-border bg-background">
+        <div className="container py-24">
+          <div className="flex items-end justify-between gap-6 mb-14">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="hairline" />
+                <span className="eyebrow">Služby</span>
+              </div>
+              <h2 className="font-display text-3xl md:text-5xl text-foreground max-w-xl leading-[1.1]">
+                Komplexné geodetické riešenia.
+              </h2>
+            </div>
+            <Link
+              to="/sluzby"
+              className="hidden md:inline-flex items-center gap-2 text-sm font-medium text-foreground border-b border-foreground/40 pb-1 hover:border-foreground transition-colors"
+            >
+              Všetky služby <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          <div className="grid md:grid-cols-3 border-t border-border">
             {[
-              { icon: FileText, title: "Geometrické plány", desc: "Rozdelenie, zlúčenie a určenie hraníc pozemkov" },
-              { icon: Ruler, title: "Vytyčovanie", desc: "Presné vytyčovanie hraníc v teréne" },
-              { icon: MapPin, title: "Adresné body", desc: "Zameranie a zriadenie adresných bodov" },
+              { n: "01", t: "Geometrické plány", d: "Rozdelenie, zlúčenie a určenie vlastníckych hraníc pozemkov." },
+              { n: "02", t: "Vytyčovanie pozemkov", d: "Presné vytyčovanie hraníc v teréne modernou technikou." },
+              { n: "03", t: "Adresné body", d: "Zameranie a zriadenie adresných bodov pre novostavby." },
             ].map((s, i) => (
               <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 30 }}
+                key={s.t}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.15 }}
-                whileHover={{ y: -8 }}
-                className="group bg-card rounded-2xl p-8 shadow-sm border hover:shadow-xl hover:border-primary/20 transition-all duration-500 cursor-default"
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="group py-10 md:px-8 md:border-r border-b md:border-b-0 border-border last:border-r-0"
               >
-                <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <s.icon className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-display text-foreground mb-3">{s.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                <div className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-6">{s.n}</div>
+                <h3 className="font-display text-2xl text-foreground mb-3">{s.t}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.d}</p>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <Link to="/sluzby">
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-2 text-primary font-semibold hover:text-accent transition-colors"
-              >
-                Zobraziť všetky služby <ArrowRight className="w-4 h-4" />
-              </motion.span>
-            </Link>
-          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-primary">
-        <div className="container px-4 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-display text-primary-foreground mb-6"
-          >
-            Máte otázky?
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-primary-foreground/60 mb-8 max-w-md mx-auto"
-          >
-            Neváhajte nás kontaktovať pre nezáväznú konzultáciu
-          </motion.p>
-          <Link to="/kontakt">
-            <motion.span
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-xl text-lg font-semibold shadow-lg shadow-accent/25"
+      <section className="bg-primary text-primary-foreground">
+        <div className="container py-24 md:py-32 grid md:grid-cols-12 gap-8 items-end">
+          <div className="md:col-span-8">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-12 bg-primary-foreground/40" />
+              <span className="text-[11px] font-medium tracking-[0.22em] uppercase text-primary-foreground/60">
+                Kontakt
+              </span>
+            </div>
+            <h2 className="font-display text-4xl md:text-6xl leading-[1.05]">
+              Potrebujete geodeta?<br />
+              <span className="text-accent">Ozvite sa.</span>
+            </h2>
+          </div>
+          <div className="md:col-span-4 md:text-right">
+            <Link
+              to="/kontakt"
+              className="inline-flex items-center gap-3 bg-background text-foreground px-6 py-3.5 rounded-full text-sm font-medium hover:bg-accent hover:text-accent-foreground transition-colors"
             >
-              Kontaktujte nás <ArrowRight className="w-5 h-5" />
-            </motion.span>
-          </Link>
+              Napíšte nám <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
     </>

@@ -2,107 +2,74 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 
-const contactInfo = [
-  {
-    icon: Phone,
-    title: "Telefón",
-    items: [
-      { text: "0948 148 341", href: "tel:+421948148341" },
-    ],
-  },
-  {
-    icon: Mail,
-    title: "E-mail",
-    items: [{ text: "geobukovy@gmail.com", href: "mailto:geobukovy@gmail.com" }],
-  },
-  {
-    icon: MapPin,
-    title: "Adresa",
-    items: [{ text: "Rabča 327" }],
-  },
-  {
-    icon: Clock,
-    title: "Pracovná doba",
-    items: [{ text: "Po – Pi: 8:00 – 16:00" }],
-  },
+const infoRows = [
+  { icon: Phone, label: "Telefón", value: "0948 148 341", href: "tel:+421948148341" },
+  { icon: Mail, label: "E-mail", value: "geobukovy@gmail.com", href: "mailto:geobukovy@gmail.com" },
+  { icon: MapPin, label: "Adresa", value: "Rabča 327" },
+  { icon: Clock, label: "Pracovná doba", value: "Po – Pi · 8:00 – 16:00" },
 ];
 
 const Contact = () => {
   return (
     <>
-      {/* Page header */}
-      <section className="pt-32 pb-16 bg-primary">
-        <div className="container px-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block px-4 py-1.5 text-xs font-semibold tracking-[0.15em] uppercase text-accent bg-accent/20 rounded-full mb-4"
-          >
-            Spojte sa s nami
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-6xl font-display text-primary-foreground mb-4"
-          >
-            Kontakt
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-primary-foreground/60 max-w-lg mx-auto"
-          >
-            Neváhajte ma kontaktovať pre nezáväznú konzultáciu alebo cenovú ponuku
-          </motion.p>
+      <section className="pt-40 pb-20 bg-background border-b border-border">
+        <div className="container grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="hairline" />
+              <span className="eyebrow">Spojme sa</span>
+            </div>
+          </div>
+          <div className="md:col-span-8">
+            <h1 className="font-display text-5xl md:text-7xl leading-[1] text-foreground">
+              Kontakt<span className="text-accent">.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-muted-foreground text-base md:text-lg leading-relaxed">
+              Napíšte, čo potrebujete — pripravím nezáväznú cenovú ponuku
+              a odpoviem zvyčajne do 24 hodín.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Contact content */}
       <section className="py-24 bg-background">
-        <div className="container px-4">
-          <div className="grid lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
-            {/* Info cards */}
-            <div className="lg:col-span-2 flex flex-col gap-6">
-              {contactInfo.map((info, i) => (
+        <div className="container grid lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-5">
+            <div className="eyebrow mb-6">Kontaktné údaje</div>
+            <div className="divide-y divide-border border-y border-border">
+              {infoRows.map((row, i) => (
                 <motion.div
-                  key={info.title}
-                  initial={{ opacity: 0, x: -30 }}
+                  key={row.label}
+                  initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex items-start gap-4 p-6 bg-card rounded-2xl border shadow-sm hover:shadow-md transition-shadow"
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="flex items-center justify-between py-5 gap-6"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <info.icon className="w-6 h-6 text-primary" />
+                  <div className="flex items-center gap-4 text-muted-foreground">
+                    <row.icon className="w-4 h-4" />
+                    <span className="text-xs tracking-[0.18em] uppercase">{row.label}</span>
                   </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{info.title}</h3>
-                    {info.items.map((item) =>
-                      item.href ? (
-                        <a
-                          key={item.text}
-                          href={item.href}
-                          className="block text-muted-foreground hover:text-accent transition-colors text-sm"
-                        >
-                          {item.text}
-                        </a>
-                      ) : (
-                        <p key={item.text} className="text-muted-foreground text-sm">
-                          {item.text}
-                        </p>
-                      )
-                    )}
-                  </div>
+                  {row.href ? (
+                    <a href={row.href} className="text-foreground hover:text-primary transition-colors text-right">
+                      {row.value}
+                    </a>
+                  ) : (
+                    <span className="text-foreground text-right">{row.value}</span>
+                  )}
                 </motion.div>
               ))}
             </div>
 
-            {/* Form */}
-            <div className="lg:col-span-3">
-              <ContactForm />
+            <div className="mt-10 text-sm text-muted-foreground leading-relaxed">
+              Ing. Tomáš Bukový, PhD.<br />
+              GEO2 — Geodetická kancelária, inžiniering<br />
+              Rabča 327, Slovenská republika
             </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <ContactForm />
           </div>
         </div>
       </section>
