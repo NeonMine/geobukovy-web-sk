@@ -1,44 +1,53 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { MapPin, Phone, Mail } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Footer = () => (
-  <footer className="bg-foreground text-primary-foreground pt-16 pb-8">
-    <div className="container px-4">
-      <div className="grid md:grid-cols-3 gap-12 mb-12">
-        <div>
-          <h3 className="text-xl font-display mb-4">GeoBukový</h3>
-          <p className="text-primary-foreground/50 text-sm leading-relaxed">
-            Ing. Tomáš Bukový, PhD. GEO2<br />
-            Geodetická kancelária, inžiniering
+  <footer className="bg-foreground text-background">
+    <div className="container pt-20 pb-10">
+      <div className="grid md:grid-cols-12 gap-10 pb-16 border-b border-background/10">
+        <div className="md:col-span-5">
+          <div className="flex items-center gap-3 mb-6">
+            <img src={logo} alt="" className="h-10 w-auto invert-0" />
+            <div>
+              <div className="font-display text-xl">GeoBukový</div>
+              <div className="text-[10px] tracking-[0.2em] uppercase text-background/50 mt-1">
+                Geodézia · Inžiniering
+              </div>
+            </div>
+          </div>
+          <p className="text-background/60 text-sm leading-relaxed max-w-sm">
+            Ing. Tomáš Bukový, PhD. — GEO2. Autorizovaný geodet s 15-ročnou praxou.
+            Orava a celé Slovensko.
           </p>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/40 mb-4">Navigácia</h4>
-          <div className="flex flex-col gap-2">
-            <Link to="/" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">Domov</Link>
-            <Link to="/sluzby" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">Služby</Link>
-            <Link to="/o-nas" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">O nás</Link>
-            <Link to="/kontakt" className="text-primary-foreground/60 hover:text-accent transition-colors text-sm">Kontakt</Link>
+
+        <div className="md:col-span-3">
+          <div className="text-[10px] tracking-[0.22em] uppercase text-background/40 mb-5">Navigácia</div>
+          <div className="flex flex-col gap-3 text-sm">
+            <Link to="/" className="text-background/80 hover:text-accent transition-colors w-fit">Domov</Link>
+            <Link to="/sluzby" className="text-background/80 hover:text-accent transition-colors w-fit">Služby</Link>
+            <Link to="/o-nas" className="text-background/80 hover:text-accent transition-colors w-fit">O nás</Link>
+            <Link to="/kontakt" className="text-background/80 hover:text-accent transition-colors w-fit">Kontakt</Link>
           </div>
         </div>
-        <div>
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/40 mb-4">Kontakt</h4>
+
+        <div className="md:col-span-4">
+          <div className="text-[10px] tracking-[0.22em] uppercase text-background/40 mb-5">Kontakt</div>
           <div className="flex flex-col gap-3 text-sm">
-            <div className="flex items-center gap-2 text-primary-foreground/60">
-              <MapPin className="w-4 h-4 text-accent" /> Rabča 327
-            </div>
-            <a href="tel:+421948148341" className="flex items-center gap-2 text-primary-foreground/60 hover:text-accent transition-colors">
-              <Phone className="w-4 h-4 text-accent" /> 0948 148 341
+            <a href="tel:+421948148341" className="text-background/80 hover:text-accent transition-colors w-fit">
+              0948 148 341
             </a>
-            <a href="mailto:geobukovy@gmail.com" className="flex items-center gap-2 text-primary-foreground/60 hover:text-accent transition-colors">
-              <Mail className="w-4 h-4 text-accent" /> geobukovy@gmail.com
+            <a href="mailto:geobukovy@gmail.com" className="text-background/80 hover:text-accent transition-colors w-fit">
+              geobukovy@gmail.com
             </a>
+            <span className="text-background/60">Rabča 327, Slovensko</span>
           </div>
         </div>
       </div>
-      <div className="border-t border-primary-foreground/10 pt-8 text-center text-primary-foreground/30 text-xs">
-        © {new Date().getFullYear()} GeoBukový — Ing. Tomáš Bukový, PhD. GEO2. Všetky práva vyhradené.
+
+      <div className="pt-8 flex flex-col md:flex-row justify-between gap-3 text-[11px] tracking-wider text-background/40">
+        <span>© {new Date().getFullYear()} GeoBukový · Ing. Tomáš Bukový, PhD., GEO2</span>
+        <span>Všetky práva vyhradené.</span>
       </div>
     </div>
   </footer>

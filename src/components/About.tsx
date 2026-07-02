@@ -4,102 +4,75 @@ import aboutImg from "@/assets/about-image.jpg";
 const About = () => {
   return (
     <>
-      {/* Page header */}
-      <section className="pt-32 pb-16 bg-primary">
-        <div className="container px-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-block px-4 py-1.5 text-xs font-semibold tracking-[0.15em] uppercase text-accent bg-accent/20 rounded-full mb-4"
-          >
-            Kto sme
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-6xl font-display text-primary-foreground mb-4"
-          >
-            O nás
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-primary-foreground/60 max-w-lg mx-auto"
-          >
-            Spoznajte nás bližšie
-          </motion.p>
+      <section className="pt-40 pb-20 bg-background border-b border-border">
+        <div className="container grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-4">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="hairline" />
+              <span className="eyebrow">O nás</span>
+            </div>
+          </div>
+          <div className="md:col-span-8">
+            <h1 className="font-display text-5xl md:text-7xl leading-[1] text-foreground">
+              Geodézia s pätnástimi rokmi praxe.
+            </h1>
+          </div>
         </div>
       </section>
 
-      {/* Content */}
       <section className="py-24 bg-background">
-        <div className="container px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="relative">
-                <img
-                  src={aboutImg}
-                  alt="Geodet pri práci"
-                  className="rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]"
-                  loading="lazy"
-                  width={800}
-                  height={1000}
-                />
-                <div className="absolute -bottom-6 -right-6 bg-accent text-accent-foreground rounded-2xl p-6 shadow-xl">
-                  <div className="text-3xl font-display font-bold">15</div>
-                  <div className="text-xs opacity-80">rokov</div>
+        <div className="container grid md:grid-cols-12 gap-12 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="md:col-span-5"
+          >
+            <img
+              src={aboutImg}
+              alt="Geodet pri práci v teréne"
+              className="w-full aspect-[4/5] object-cover"
+              loading="lazy"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="md:col-span-7 md:pl-8"
+          >
+            <div className="eyebrow mb-4">Ing. Tomáš Bukový, PhD.</div>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground leading-[1.15] mb-8">
+              Autorizovaný geodet a kartograf, GEO2 — geodetická kancelária a inžiniering.
+            </h2>
+            <div className="space-y-5 text-muted-foreground leading-relaxed">
+              <p>
+                Za viac ako pätnásť rokov v odbore som vypracoval stovky geometrických plánov,
+                vytýčení a geodetických podkladov pre stavby v regióne Orava a po celom Slovensku.
+              </p>
+              <p>
+                Používam najmodernejšiu geodetickú techniku a softvér. Klientom garantujem
+                presnosť, dodržanie termínov a jasnú, prehľadnú dokumentáciu — bez zbytočných
+                komplikácií a s osobným prístupom.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-3 gap-6 border-t border-border pt-8">
+              {[
+                { k: "15", v: "rokov praxe" },
+                { k: "PhD.", v: "vysoká odbornosť" },
+                { k: "GEO2", v: "autorizácia" },
+              ].map((s) => (
+                <div key={s.v}>
+                  <div className="font-display text-3xl md:text-4xl text-foreground">{s.k}</div>
+                  <div className="mt-1 text-xs text-muted-foreground tracking-wide">{s.v}</div>
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-display text-foreground mb-2">
-                Ing. Tomáš Bukový, PhD.
-              </h2>
-              <div className="text-accent font-semibold mb-6">GEO2 — Geodetická kancelária, inžiniering</div>
-
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Autorizovaný geodet s dlhoročnou praxou v oblasti geodézie a kartografie.
-                Mojím cieľom je poskytovať presné, spoľahlivé a rýchle geodetické služby pre mojich klientov.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-10">
-                Využívam najmodernejšiu geodetickú techniku a softvér, vďaka čomu dokážem
-                zabezpečiť najvyššiu presnosť meraní. Pôsobím v regióne Orava a na celom území Slovenska.
-              </p>
-
-              <div className="grid grid-cols-3 gap-6">
-                {[
-                  { value: "100%", label: "spokojnosť" },
-                  { value: "Orava", label: "a celé SR" },
-                  { value: "GEO2", label: "certifikácia" },
-                ].map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="text-center p-4 rounded-xl bg-muted"
-                  >
-                    <div className="text-2xl font-display text-primary font-bold">{stat.value}</div>
-                    <div className="text-muted-foreground text-xs mt-1">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     </>
