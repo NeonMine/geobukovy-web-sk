@@ -6,7 +6,7 @@ const infoRows = [
   { icon: Phone, label: "Telefón", value: "0948 148 341", href: "tel:+421948148341" },
   { icon: Mail, label: "E-mail", value: "geobukovy@gmail.com", href: "mailto:geobukovy@gmail.com" },
   { icon: MapPin, label: "Adresa", value: "Rabča 327" },
-  { icon: Clock, label: "Pracovná doba", value: "Po – Pi · 8:00 – 16:00" },
+  { icon: Clock, label: "Pracovná doba", value: "Dohoda cez telefón" },
 ];
 
 const Contact = () => {
