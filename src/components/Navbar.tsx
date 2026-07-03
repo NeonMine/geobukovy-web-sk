@@ -25,54 +25,60 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/85 backdrop-blur-md border-b border-border" : "bg-background/0"
+        scrolled
+          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-[0_1px_0_0_hsl(var(--border))]"
+          : "bg-background/60 backdrop-blur-sm"
       }`}
     >
-      <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="GeoBukový GEO2 logo" className="h-10 w-auto md:h-11" />
+      <div className="container flex items-center justify-between h-20">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center overflow-hidden ring-1 ring-primary/10 shadow-sm">
+            <img src={logo} alt="GeoBukový GEO2" className="h-8 w-8 object-contain" />
+          </div>
           <div className="leading-none">
-            <div className="font-display text-lg md:text-xl text-foreground tracking-tight">
+            <div className="font-display font-extrabold text-xl text-primary tracking-tight">
               GeoBukový
             </div>
-            <div className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mt-1">
+            <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-muted-foreground mt-1">
               Geodézia · Inžiniering
             </div>
           </div>
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-10">
           {links.map((l) => {
             const active = location.pathname === l.href;
             return (
               <Link
                 key={l.href}
                 to={l.href}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                className={`relative font-mono text-[11px] font-bold tracking-[0.24em] uppercase transition-colors pb-1 ${
+                  active
+                    ? "text-primary border-b-2 border-accent"
+                    : "text-muted-foreground hover:text-primary"
                 }`}
               >
                 {l.label}
-                {active && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute left-4 right-4 -bottom-0.5 h-px bg-foreground"
-                  />
-                )}
               </Link>
             );
           })}
-          <Link
-            to="/kontakt"
-            className="ml-3 inline-flex items-center gap-2 bg-foreground text-background px-4 py-2 text-sm font-medium rounded-full hover:bg-primary transition-colors"
-          >
-            Nezáväzná ponuka
-          </Link>
         </div>
+
+        <a
+          href="tel:+421948148341"
+          className="hidden md:flex flex-col items-end group"
+        >
+          <span className="font-mono text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">
+            Kontaktujte nás
+          </span>
+          <span className="font-mono text-base font-extrabold text-primary group-hover:text-primary-glow transition-colors">
+            0948 148 341
+          </span>
+        </a>
 
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden p-2 text-foreground"
+          className="md:hidden p-2 text-primary"
           aria-label="Menu"
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -93,13 +99,19 @@ const Navbar = () => {
                   key={l.href}
                   to={l.href}
                   onClick={() => setOpen(false)}
-                  className={`py-3 text-sm font-medium border-b border-border/60 ${
-                    location.pathname === l.href ? "text-foreground" : "text-muted-foreground"
+                  className={`py-3 font-mono text-xs font-bold tracking-[0.2em] uppercase border-b border-border/60 ${
+                    location.pathname === l.href ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
                   {l.label}
                 </Link>
               ))}
+              <a
+                href="tel:+421948148341"
+                className="py-4 font-mono text-sm font-extrabold text-primary"
+              >
+                0948 148 341
+              </a>
             </div>
           </motion.div>
         )}
