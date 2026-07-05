@@ -6,34 +6,43 @@
 
 @layer base {
   :root {
-    --background: 40 22% 97%;
-    --foreground: 160 30% 10%;
+    --background: 60 30% 98%;
+    --foreground: 160 40% 8%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 30% 10%;
+    --card-foreground: 160 40% 8%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 30% 10%;
+    --popover-foreground: 160 40% 8%;
 
-    --primary: 158 42% 20%;
-    --primary-foreground: 40 22% 97%;
-    --primary-glow: 158 35% 30%;
+    --primary: 158 55% 18%;
+    --primary-foreground: 60 30% 98%;
+    --primary-glow: 158 45% 32%;
+    --primary-deep: 160 60% 12%;
 
-    --secondary: 40 15% 93%;
-    --secondary-foreground: 160 30% 10%;
+    --secondary: 90 20% 94%;
+    --secondary-foreground: 160 40% 8%;
 
-    --muted: 40 12% 92%;
-    --muted-foreground: 160 10% 38%;
+    --muted: 90 15% 93%;
+    --muted-foreground: 160 12% 34%;
 
-    --accent: 36 42% 42%;
-    --accent-foreground: 40 22% 97%;
+    --accent: 82 55% 45%;
+    --accent-foreground: 160 40% 8%;
+    --accent-soft: 82 45% 88%;
+
+    --gold: 38 55% 48%;
 
     --destructive: 0 60% 42%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 10% 86%;
-    --input: 40 10% 86%;
-    --ring: 158 42% 20%;
+    --border: 90 12% 86%;
+    --input: 90 12% 86%;
+    --ring: 158 55% 18%;
+
+    --gradient-hero: linear-gradient(135deg, hsl(158 55% 18%) 0%, hsl(160 60% 12%) 60%, hsl(158 45% 22%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(60 30% 98%) 0%, hsl(90 20% 94%) 100%);
+    --shadow-elegant: 0 30px 60px -20px hsl(160 60% 12% / 0.25);
+    --shadow-soft: 0 12px 40px -12px hsl(160 60% 12% / 0.15);
 
     --radius: 0.5rem;
 
