@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import logo from "@/assets/logo.png";
 
@@ -24,23 +24,19 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/90 backdrop-blur-xl border-b border-border shadow-[0_1px_0_0_hsl(var(--border))]"
-          : "bg-background/60 backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-md ${
+        scrolled ? "border-b border-border" : "border-b border-transparent"
       }`}
     >
       <div className="container flex items-center justify-between h-20">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center overflow-hidden ring-1 ring-primary/10 shadow-sm">
-            <img src={logo} alt="GeoBukový GEO2" className="h-8 w-8 object-contain" />
-          </div>
-          <div className="leading-none">
-            <div className="font-display font-extrabold text-xl text-primary tracking-tight">
+        <Link to="/" className="flex items-center gap-3">
+          <img src={logo} alt="GeoBukový" className="h-11 w-11 object-contain" />
+          <div className="leading-tight">
+            <div className="font-serif text-xl text-primary tracking-tight">
               GeoBukový
             </div>
-            <div className="font-mono text-[10px] tracking-[0.24em] uppercase text-muted-foreground mt-1">
-              Geodézia · Inžiniering
+            <div className="text-[10px] tracking-[0.28em] uppercase text-muted-foreground mt-0.5">
+              Geodézia · Kartografia
             </div>
           </div>
         </Link>
@@ -52,13 +48,14 @@ const Navbar = () => {
               <Link
                 key={l.href}
                 to={l.href}
-                className={`relative font-mono text-[11px] font-bold tracking-[0.24em] uppercase transition-colors pb-1 ${
-                  active
-                    ? "text-primary border-b-2 border-accent"
-                    : "text-muted-foreground hover:text-primary"
+                className={`relative text-[13px] tracking-wide transition-colors ${
+                  active ? "text-primary" : "text-foreground/70 hover:text-primary"
                 }`}
               >
                 {l.label}
+                {active && (
+                  <span className="absolute -bottom-1.5 left-0 right-0 h-px bg-accent" />
+                )}
               </Link>
             );
           })}
@@ -66,14 +63,10 @@ const Navbar = () => {
 
         <a
           href="tel:+421948148341"
-          className="hidden md:flex flex-col items-end group"
+          className="hidden md:inline-flex items-center gap-2 text-primary hover:text-accent transition-colors"
         >
-          <span className="font-mono text-[10px] font-bold text-muted-foreground uppercase tracking-[0.2em]">
-            Kontaktujte nás
-          </span>
-          <span className="font-mono text-base font-extrabold text-primary group-hover:text-primary-glow transition-colors">
-            0948 148 341
-          </span>
+          <Phone className="w-4 h-4" />
+          <span className="text-sm font-medium tracking-wide">0948 148 341</span>
         </a>
 
         <button
@@ -99,8 +92,8 @@ const Navbar = () => {
                   key={l.href}
                   to={l.href}
                   onClick={() => setOpen(false)}
-                  className={`py-3 font-mono text-xs font-bold tracking-[0.2em] uppercase border-b border-border/60 ${
-                    location.pathname === l.href ? "text-primary" : "text-muted-foreground"
+                  className={`py-3 text-sm border-b border-border/60 ${
+                    location.pathname === l.href ? "text-primary" : "text-foreground/70"
                   }`}
                 >
                   {l.label}
@@ -108,7 +101,7 @@ const Navbar = () => {
               ))}
               <a
                 href="tel:+421948148341"
-                className="py-4 font-mono text-sm font-extrabold text-primary"
+                className="py-4 text-sm font-medium text-primary"
               >
                 0948 148 341
               </a>

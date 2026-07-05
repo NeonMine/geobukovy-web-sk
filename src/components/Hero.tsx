@@ -1,234 +1,226 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   show: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.7, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] as const },
   }),
 };
 
 const services = [
-  { n: "01", t: "Geometrické plány", d: "Rozdelenie, zlúčenie a určenie vlastníckych hraníc pozemkov." },
-  { n: "02", t: "Vytyčovanie stavieb", d: "Presné vytyčovanie hraníc a objektov v teréne modernou technikou." },
-  { n: "03", t: "Inžinierska geodézia", d: "Zameranie skutočného vyhotovenia, kontrolné merania a dokumentácia." },
-  { n: "04", t: "Adresné body", d: "Zameranie a zriadenie adresných bodov pre novostavby a kolaudácie." },
+  { n: "I", t: "Geometrické plány", d: "Rozdelenie, zlúčenie a určenie vlastníckych hraníc pozemkov." },
+  { n: "II", t: "Vytyčovanie stavieb", d: "Presné vytýčenie hraníc a objektov v teréne." },
+  { n: "III", t: "Inžinierska geodézia", d: "Zameranie skutočného vyhotovenia a dokumentácia." },
+  { n: "IV", t: "Adresné body", d: "Zameranie adresných bodov pre novostavby a kolaudácie." },
 ];
 
 const Hero = () => {
   return (
     <>
-      {/* HERO — architectural framed composition */}
-      <section className="pt-28 md:pt-32 pb-16 md:pb-24 bg-background">
+      {/* HERO — classic editorial split */}
+      <section className="pt-32 md:pt-40 pb-20 md:pb-28 bg-background">
         <div className="container">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border shadow-[0_40px_80px_-30px_hsl(158_84%_12%_/_0.25)] bg-primary">
-            {/* Hero visual band */}
-            <div className="relative h-[560px] md:h-[640px] flex items-center overflow-hidden">
-              <img
-                src={heroBg}
-                alt=""
-                aria-hidden
-                className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity"
-              />
-              {/* Technical dot grid */}
-              <div
-                className="absolute inset-0 opacity-[0.06] pointer-events-none"
-                style={{
-                  backgroundImage:
-                    "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
-                  backgroundSize: "32px 32px",
-                }}
-              />
-              {/* Emerald wash for legibility */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/85 to-primary/30" />
-
-              {/* Content */}
-              <div className="relative z-10 px-8 md:px-16 lg:px-24 max-w-5xl">
-                <motion.div
-                  initial="hidden"
-                  animate="show"
-                  variants={fadeUp}
-                  custom={0}
-                  className="flex items-center gap-4 mb-8"
-                >
-                  <span className="h-px w-12 bg-accent" />
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-accent">
-                    Geodetické &amp; kartografické práce
-                  </span>
-                </motion.div>
-
-                <motion.h1
-                  initial="hidden"
-                  animate="show"
-                  variants={fadeUp}
-                  custom={1}
-                  className="font-display font-extrabold text-primary-foreground text-6xl md:text-7xl lg:text-8xl leading-[0.88] tracking-tight mb-8"
-                >
-                  Definujeme
-                  <br />
-                  <span className="italic text-accent">priestor.</span>
-                </motion.h1>
-
-                <motion.p
-                  initial="hidden"
-                  animate="show"
-                  variants={fadeUp}
-                  custom={2}
-                  className="text-lg md:text-xl text-primary-foreground/80 max-w-lg leading-relaxed font-light mb-10"
-                >
-                  Ing. Tomáš Bukový, PhD. — geodetická kancelária s 15 rokmi praxe v oblasti geometrických plánov, vytyčovania a inžinierskej geodézie.
-                </motion.p>
-
-                <motion.div
-                  initial="hidden"
-                  animate="show"
-                  variants={fadeUp}
-                  custom={3}
-                  className="flex flex-wrap gap-4"
-                >
-                  <Link
-                    to="/kontakt"
-                    className="group inline-flex items-center gap-3 px-8 py-4 bg-accent text-accent-foreground font-bold rounded-2xl shadow-[0_20px_40px_-10px_hsl(82_84%_50%_/_0.35)] hover:-translate-y-0.5 hover:shadow-[0_25px_50px_-12px_hsl(82_84%_50%_/_0.45)] transition-all font-mono uppercase text-xs tracking-[0.2em]"
-                  >
-                    Nezáväzná konzultácia
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Link>
-                  <Link
-                    to="/sluzby"
-                    className="inline-flex items-center gap-3 px-8 py-4 bg-primary-foreground/5 text-primary-foreground border border-primary-foreground/20 backdrop-blur-md font-bold rounded-2xl hover:bg-primary-foreground/10 transition-all font-mono uppercase text-xs tracking-[0.2em]"
-                  >
-                    Naše služby
-                  </Link>
-                </motion.div>
-              </div>
-
-              {/* Floating data points */}
+          <div className="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+            <div className="md:col-span-7">
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.9, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute top-1/2 right-10 lg:right-20 -translate-y-1/2 hidden lg:flex flex-col gap-10"
+                initial="hidden"
+                animate="show"
+                variants={fadeUp}
+                custom={0}
+                className="flex items-center gap-4 mb-8"
               >
-                <div className="border-l border-primary-foreground/25 pl-6">
-                  <div className="font-display text-3xl font-black text-accent">±2mm</div>
-                  <div className="font-mono text-[10px] text-primary-foreground/50 uppercase font-bold tracking-[0.22em] mt-1">
-                    Garantovaná presnosť
-                  </div>
-                </div>
-                <div className="border-l border-primary-foreground/25 pl-6">
-                  <div className="font-display text-3xl font-black text-accent">15+</div>
-                  <div className="font-mono text-[10px] text-primary-foreground/50 uppercase font-bold tracking-[0.22em] mt-1">
-                    Rokov praxe
-                  </div>
-                </div>
-                <div className="border-l border-primary-foreground/25 pl-6">
-                  <div className="font-display text-3xl font-black text-accent">GEO2</div>
-                  <div className="font-mono text-[10px] text-primary-foreground/50 uppercase font-bold tracking-[0.22em] mt-1">
-                    Autorizovaný geodet
-                  </div>
-                </div>
+                <span className="h-px w-10 bg-accent" />
+                <span className="text-[11px] tracking-[0.32em] uppercase text-accent">
+                  Geodetická kancelária
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial="hidden"
+                animate="show"
+                variants={fadeUp}
+                custom={1}
+                className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.02] text-primary"
+              >
+                Presné merania.<br />
+                <span className="text-foreground/80">Spoľahlivá dokumentácia.</span>
+              </motion.h1>
+
+              <motion.p
+                initial="hidden"
+                animate="show"
+                variants={fadeUp}
+                custom={2}
+                className="mt-8 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed"
+              >
+                Ing. Tomáš Bukový, PhD. — autorizovaný geodet a kartograf s viac ako
+                pätnástimi rokmi praxe v oblasti geometrických plánov, vytyčovania
+                a inžinierskej geodézie.
+              </motion.p>
+
+              <motion.div
+                initial="hidden"
+                animate="show"
+                variants={fadeUp}
+                custom={3}
+                className="mt-10 flex flex-wrap items-center gap-8"
+              >
+                <Link
+                  to="/kontakt"
+                  className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-3.5 text-sm tracking-wide hover:bg-primary-glow transition-colors"
+                >
+                  Nezáväzná konzultácia
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <Link
+                  to="/sluzby"
+                  className="text-sm tracking-wide text-primary border-b border-accent/60 hover:border-accent pb-0.5 transition-colors"
+                >
+                  Prezrieť služby
+                </Link>
               </motion.div>
             </div>
 
-            {/* Services strip inside the frame */}
-            <div className="bg-primary-glow/30 border-t border-primary-foreground/10 backdrop-blur-sm">
-              <div className="grid grid-cols-1 md:grid-cols-4">
-                {services.map((s, i) => (
-                  <motion.div
-                    key={s.n}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.05 * i }}
-                    className="group px-8 py-10 md:border-r border-primary-foreground/10 last:border-r-0 hover:bg-primary-foreground/[0.03] transition-colors"
-                  >
-                    <div className="font-mono text-[11px] font-bold text-accent/70 mb-4">
-                      / {s.n}
-                    </div>
-                    <h3 className="font-display font-bold text-xl text-primary-foreground mb-3 group-hover:text-accent transition-colors">
-                      {s.t}
-                    </h3>
-                    <p className="text-sm text-primary-foreground/60 leading-relaxed">
-                      {s.d}
-                    </p>
-                  </motion.div>
-                ))}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="md:col-span-5"
+            >
+              <div className="relative">
+                <div className="absolute -inset-3 border border-accent/40 pointer-events-none" aria-hidden />
+                <img
+                  src={heroBg}
+                  alt="Geodetické práce v teréne"
+                  className="w-full aspect-[4/5] object-cover"
+                />
+                <div className="mt-4 flex items-baseline justify-between text-[11px] tracking-[0.24em] uppercase text-muted-foreground">
+                  <span>Orava · Slovensko</span>
+                  <span>Est. 2010</span>
+                </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* INTRO */}
+      {/* CREDENTIALS STRIP */}
+      <section className="border-y border-border bg-secondary/50">
+        <div className="container grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+          {[
+            { k: "15+", v: "Rokov praxe" },
+            { k: "GEO2", v: "Autorizácia" },
+            { k: "PhD.", v: "Odbornosť" },
+            { k: "±2 mm", v: "Presnosť merania" },
+          ].map((s) => (
+            <div key={s.v} className="py-10 px-6 text-center">
+              <div className="font-serif text-3xl md:text-4xl text-primary">{s.k}</div>
+              <div className="mt-2 text-[10px] tracking-[0.26em] uppercase text-muted-foreground">
+                {s.v}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SERVICES OVERVIEW */}
       <section className="py-24 md:py-32 bg-background">
-        <div className="container grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-4">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="h-px w-10 bg-accent" />
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.28em] text-primary/70">
-                Kto sme
-              </span>
+        <div className="container">
+          <div className="grid md:grid-cols-12 gap-12 mb-16">
+            <div className="md:col-span-4">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="h-px w-10 bg-accent" />
+                <span className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground">
+                  Naša ponuka
+                </span>
+              </div>
+              <h2 className="font-serif text-4xl md:text-5xl text-primary leading-[1.05]">
+                Komplexné geodetické služby.
+              </h2>
+            </div>
+            <div className="md:col-span-7 md:col-start-6 flex items-end">
+              <p className="text-muted-foreground leading-relaxed">
+                Od geometrických plánov cez vytyčovanie stavieb až po adresné body
+                a inžiniersku geodéziu — s dôrazom na presnosť, termíny a čistú
+                dokumentáciu pre fyzické aj právnické osoby.
+              </p>
             </div>
           </div>
-          <div className="md:col-span-8">
-            <h2 className="font-display font-extrabold text-3xl md:text-5xl leading-[1.05] tracking-tight text-primary">
-              Presné merania a spoľahlivá dokumentácia — od hraníc pozemku po kolaudáciu stavby.
-            </h2>
-            <div className="mt-12 grid sm:grid-cols-3 gap-8 border-t border-border pt-10">
-              {[
-                { k: "15", v: "rokov praxe" },
-                { k: "GEO2", v: "autorizácia" },
-                { k: "Orava", v: "a celé Slovensko" },
-              ].map((s) => (
-                <div key={s.v}>
-                  <div className="font-display font-black text-4xl text-primary">{s.k}</div>
-                  <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {s.v}
-                  </div>
+
+          <div className="border-t border-border">
+            {services.map((s, i) => (
+              <motion.div
+                key={s.n}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="group grid md:grid-cols-12 gap-6 py-8 md:py-10 border-b border-border items-baseline hover:bg-secondary/40 transition-colors px-2 -mx-2"
+              >
+                <div className="md:col-span-1 text-accent text-sm tracking-[0.2em]">{s.n}</div>
+                <h3 className="md:col-span-4 font-serif text-2xl md:text-3xl text-primary leading-tight">
+                  {s.t}
+                </h3>
+                <p className="md:col-span-6 text-muted-foreground leading-relaxed">
+                  {s.d}
+                </p>
+                <div className="md:col-span-1 md:text-right">
+                  <ArrowRight className="inline-block w-4 h-4 text-muted-foreground/60 group-hover:text-accent group-hover:translate-x-1 transition-all" />
                 </div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-end">
+            <Link
+              to="/sluzby"
+              className="inline-flex items-center gap-2 text-sm text-primary border-b border-accent/60 hover:border-accent pb-0.5"
+            >
+              Všetky služby <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="pb-24">
+      <section className="pb-24 md:pb-32 bg-background">
         <div className="container">
-          <div className="rounded-[2rem] bg-primary text-primary-foreground p-12 md:p-20 grid md:grid-cols-12 gap-8 items-end relative overflow-hidden">
-            <div
-              className="absolute inset-0 opacity-[0.05] pointer-events-none"
-              style={{
-                backgroundImage:
-                  "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
-                backgroundSize: "28px 28px",
-              }}
-            />
-            <div className="md:col-span-8 relative">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="h-px w-12 bg-accent" />
-                <span className="font-mono text-[11px] font-bold tracking-[0.28em] uppercase text-accent">
+          <div className="border-t border-b border-border py-16 md:py-24 grid md:grid-cols-12 gap-8 items-center">
+            <div className="md:col-span-8">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="h-px w-10 bg-accent" />
+                <span className="text-[11px] tracking-[0.28em] uppercase text-muted-foreground">
                   Kontakt
                 </span>
               </div>
-              <h2 className="font-display font-extrabold text-4xl md:text-6xl leading-[1.02] tracking-tight">
-                Potrebujete geodeta?
-                <br />
-                <span className="italic text-accent">Ozvite sa.</span>
+              <h2 className="font-serif text-3xl md:text-5xl text-primary leading-[1.05]">
+                Potrebujete geodeta? Ozvite sa —
+                pripravím nezáväznú ponuku.
               </h2>
             </div>
-            <div className="md:col-span-4 md:text-right relative">
+            <div className="md:col-span-4 md:text-right space-y-4">
+              <div>
+                <div className="text-[10px] tracking-[0.26em] uppercase text-muted-foreground mb-1">
+                  Telefón
+                </div>
+                <a
+                  href="tel:+421948148341"
+                  className="font-serif text-2xl md:text-3xl text-primary hover:text-accent transition-colors"
+                >
+                  0948 148 341
+                </a>
+              </div>
               <Link
                 to="/kontakt"
-                className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 rounded-2xl font-mono text-xs font-bold uppercase tracking-[0.2em] hover:-translate-y-0.5 transition-transform"
+                className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 py-3 text-sm tracking-wide hover:bg-primary-glow transition-colors"
               >
-                Napíšte nám <ArrowUpRight className="w-4 h-4" />
+                Napíšte nám <ArrowRight className="w-4 h-4" />
               </Link>
-              <div className="mt-6 font-mono text-lg font-extrabold">0948 148 341</div>
             </div>
           </div>
         </div>
