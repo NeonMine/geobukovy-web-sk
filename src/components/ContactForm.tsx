@@ -50,11 +50,16 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
-      <div className="eyebrow mb-6">Napíšte nám</div>
+      <div className="mb-8">
+        <h3 className="font-display text-3xl md:text-4xl text-foreground leading-tight">
+          Napíšte nám
+        </h3>
+        <div className="w-16 h-1 bg-accent mt-4 rounded-full" />
+      </div>
 
-      <div className="grid md:grid-cols-2 gap-x-8">
-        <label className="block pt-4">
-          <span className="text-xs tracking-[0.18em] uppercase text-muted-foreground">Meno a priezvisko</span>
+      <div className="grid md:grid-cols-2 gap-x-10 gap-y-6">
+        <label className="block">
+          <span className="block text-sm font-medium text-foreground mb-2">Meno a priezvisko</span>
           <input
             required
             placeholder="Ján Novák"
@@ -63,8 +68,8 @@ const ContactForm = () => {
             className={inputClass}
           />
         </label>
-        <label className="block pt-4">
-          <span className="text-xs tracking-[0.18em] uppercase text-muted-foreground">E-mail</span>
+        <label className="block">
+          <span className="block text-sm font-medium text-foreground mb-2">E-mail</span>
           <input
             required
             type="email"
@@ -77,7 +82,7 @@ const ContactForm = () => {
       </div>
 
       <label className="block pt-8">
-        <span className="text-xs tracking-[0.18em] uppercase text-muted-foreground">Vaša správa</span>
+        <span className="block text-sm font-medium text-foreground mb-2">Vaša správa</span>
         <textarea
           required
           rows={5}
@@ -93,7 +98,7 @@ const ContactForm = () => {
           type="submit"
           disabled={sending}
           whileHover={{ x: 4 }}
-          className="group inline-flex items-center gap-3 bg-foreground text-background px-6 py-3.5 rounded-full text-sm font-medium hover:bg-primary transition-colors disabled:opacity-60"
+          className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-sm font-medium hover:bg-primary-deep transition-colors disabled:opacity-60 shadow-elegant"
         >
           {sending ? "Odosielam…" : "Odoslať správu"}
           <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" />
