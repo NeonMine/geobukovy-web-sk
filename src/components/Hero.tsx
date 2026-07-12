@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Compass } from "lucide-react";
+import { useRef, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
