@@ -258,12 +258,33 @@ const Hero = () => {
       <section className="pb-24 md:pb-32 bg-background">
         <div className="container">
           <motion.div
+            ref={ctaRef}
+            onMouseMove={handleMove}
+            onMouseLeave={() => setSpot((s) => ({ ...s, active: false }))}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
-            className="relative overflow-hidden bg-hero-gradient text-primary-foreground p-12 md:p-20 shadow-elegant"
+            className="group/cta relative overflow-hidden bg-hero-gradient text-primary-foreground p-12 md:p-20 shadow-elegant"
           >
+            {/* Mouse-follow spotlight */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+              style={{
+                opacity: spot.active ? 1 : 0,
+                background: `radial-gradient(600px circle at ${spot.x}% ${spot.y}%, hsl(var(--accent) / 0.35), transparent 45%)`,
+              }}
+            />
+            {/* Secondary softer glow */}
+            <div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none transition-opacity duration-700"
+              style={{
+                opacity: spot.active ? 1 : 0,
+                background: `radial-gradient(900px circle at ${spot.x}% ${spot.y}%, hsl(var(--primary-glow) / 0.25), transparent 60%)`,
+              }}
+            />
             <div className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{
                 backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
@@ -271,6 +292,7 @@ const Hero = () => {
               }}
             />
             <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
+
 
             <div className="relative grid md:grid-cols-12 gap-8 items-end">
               <div className="md:col-span-8">
