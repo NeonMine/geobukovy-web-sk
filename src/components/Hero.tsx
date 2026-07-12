@@ -23,6 +23,20 @@ const services = [
 ];
 
 const Hero = () => {
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const [spot, setSpot] = useState({ x: 50, y: 50, active: false });
+
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = ctaRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    setSpot({
+      x: ((e.clientX - r.left) / r.width) * 100,
+      y: ((e.clientY - r.top) / r.height) * 100,
+      active: true,
+    });
+  };
+
   return (
     <>
       {/* HERO */}
