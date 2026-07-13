@@ -282,17 +282,38 @@ const Hero = () => {
             />
             <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
 
-            {/* Mouse-follow spotlight (on top, follows cursor via CSS vars) */}
+            {/* Mouse-follow spotlight — layered for a refined, editorial glow */}
             <div
               ref={spotRef}
               aria-hidden
-              className="absolute inset-0 pointer-events-none transition-opacity duration-300 mix-blend-screen"
-              style={{
-                opacity: 0,
-                background:
-                  "radial-gradient(500px circle at var(--mx) var(--my), hsl(var(--accent) / 0.55), hsl(var(--primary-glow) / 0.35) 30%, transparent 65%)",
-              }}
-            />
+              className="absolute inset-0 pointer-events-none transition-opacity duration-500 ease-out"
+              style={{ opacity: 0 }}
+            >
+              {/* Soft wide halo */}
+              <div
+                className="absolute inset-0 mix-blend-soft-light"
+                style={{
+                  background:
+                    "radial-gradient(650px circle at var(--mx) var(--my), hsl(var(--accent-soft) / 0.55), transparent 60%)",
+                }}
+              />
+              {/* Focused accent core */}
+              <div
+                className="absolute inset-0 mix-blend-screen"
+                style={{
+                  background:
+                    "radial-gradient(320px circle at var(--mx) var(--my), hsl(var(--accent) / 0.28), hsl(var(--primary-glow) / 0.14) 45%, transparent 70%)",
+                }}
+              />
+              {/* Fine highlight pin */}
+              <div
+                className="absolute inset-0 mix-blend-overlay"
+                style={{
+                  background:
+                    "radial-gradient(120px circle at var(--mx) var(--my), hsl(var(--primary-foreground) / 0.18), transparent 70%)",
+                }}
+              />
+            </div>
 
 
 
