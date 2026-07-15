@@ -135,11 +135,11 @@ const Hero = () => {
                 animate="show"
                 variants={fadeUp}
                 custom={3}
-                className="mt-10 flex flex-wrap items-center gap-6"
+                className="mt-8 md:mt-10 flex flex-wrap items-center gap-4 sm:gap-6"
               >
                 <Link
                   to="/kontakt"
-                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-4 text-sm tracking-wide shadow-elegant hover:shadow-soft transition-all overflow-hidden"
+                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 sm:px-7 py-3.5 sm:py-4 text-sm tracking-wide shadow-elegant hover:shadow-soft transition-all overflow-hidden w-full sm:w-auto justify-center sm:justify-start"
                 >
                   <span className="absolute inset-0 bg-primary-glow translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   <span className="relative">Nezáväzná konzultácia</span>
@@ -152,6 +152,7 @@ const Hero = () => {
                   Prezrieť služby
                 </Link>
               </motion.div>
+
             </div>
 
             {/* Image */}
