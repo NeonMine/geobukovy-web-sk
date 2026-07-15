@@ -396,10 +396,11 @@ const Hero = () => {
                     Kontakt
                   </span>
                 </div>
-                <h2 className="font-serif text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em] text-balance">
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em] text-balance">
                   Potrebujete geodeta?<br />
                   <span className="italic text-accent-soft">Ozvite sa.</span>
                 </h2>
+
               </div>
               <div className="md:col-span-4 md:text-right space-y-5">
                 <div>
