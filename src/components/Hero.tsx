@@ -1,10 +1,36 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, useScroll } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Compass } from "lucide-react";
-import { useRef } from "react";
+import { ArrowRight, Compass, ChevronDown } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+// Animated counter for stats
+const Counter = ({ to, suffix = "", prefix = "" }: { to: number; suffix?: string; prefix?: string }) => {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        const controls = animate(0, to, {
+          duration: 1.6,
+          ease,
+          onUpdate: (v) => setVal(Math.round(v)),
+        });
+        return () => controls.stop();
+      }
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to]);
+  return <span ref={ref}>{prefix}{val}{suffix}</span>;
+};
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
