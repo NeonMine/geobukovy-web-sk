@@ -247,7 +247,7 @@ const Hero = () => {
         />
         <div className="container relative grid grid-cols-2 md:grid-cols-4 divide-x divide-primary-foreground/10">
           {[
-            { k: "15+", v: "Rokov praxe" },
+            { k: <Counter to={15} suffix="+" />, v: "Rokov praxe" },
             { k: "GEO2", v: "Autorizácia" },
             { k: "PhD.", v: "Odbornosť" },
             { k: "±2 mm", v: "Presnosť merania" },
@@ -258,18 +258,20 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease }}
-              className="py-12 px-6 text-center group"
+              whileHover={{ y: -4 }}
+              className="py-10 md:py-12 px-4 md:px-6 text-center group cursor-default"
             >
-              <div className="font-serif text-4xl md:text-5xl text-accent-soft group-hover:text-accent transition-colors">
+              <div className="font-serif text-3xl sm:text-4xl md:text-5xl text-accent-soft group-hover:text-accent transition-colors">
                 {s.k}
               </div>
-              <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-primary-foreground/60">
+              <div className="mt-2 md:mt-3 text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-primary-foreground/60">
                 {s.v}
               </div>
             </motion.div>
           ))}
         </div>
       </section>
+
 
       {/* SERVICES */}
       <section className="py-24 md:py-32 bg-background">
