@@ -1,10 +1,37 @@
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Compass } from "lucide-react";
-import { useRef } from "react";
+import { ArrowRight, Compass, ChevronDown } from "lucide-react";
+import { useRef, useEffect, useState } from "react";
+
 import heroBg from "@/assets/hero-bg.jpg";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+
+// Animated counter for stats
+const Counter = ({ to, suffix = "", prefix = "" }: { to: number; suffix?: string; prefix?: string }) => {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const started = useRef(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        const controls = animate(0, to, {
+          duration: 1.6,
+          ease,
+          onUpdate: (v) => setVal(Math.round(v)),
+        });
+        return () => controls.stop();
+      }
+    }, { threshold: 0.4 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to]);
+  return <span ref={ref}>{prefix}{val}{suffix}</span>;
+};
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -46,10 +73,20 @@ const Hero = () => {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-32 md:pt-36 pb-20 md:pb-28 overflow-hidden bg-subtle-gradient">
-        {/* Ambient orbs */}
-        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 -left-32 w-[420px] h-[420px] rounded-full bg-accent/15 blur-3xl pointer-events-none" />
+      <section className="relative pt-28 md:pt-36 pb-16 md:pb-28 overflow-hidden bg-subtle-gradient">
+        {/* Animated ambient orbs */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-40 -right-40 w-[420px] md:w-[520px] h-[420px] md:h-[520px] rounded-full bg-primary/10 blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -20, 0], y: [0, 25, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 -left-32 w-[320px] md:w-[420px] h-[320px] md:h-[420px] rounded-full bg-accent/15 blur-3xl pointer-events-none"
+        />
+
+
 
         <div className="container relative">
           <div className="grid md:grid-cols-12 gap-12 md:gap-14 items-center">
@@ -75,11 +112,12 @@ const Hero = () => {
                 animate="show"
                 variants={fadeUp}
                 custom={1}
-                className="font-serif text-5xl md:text-6xl lg:text-[5.25rem] leading-[1] tracking-[-0.02em] text-primary-deep text-balance"
+                className="font-serif text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[5.25rem] leading-[1.02] md:leading-[1] tracking-[-0.02em] text-primary-deep text-balance"
               >
                 Presné merania.<br />
                 <span className="italic font-light text-primary/85">Dôvera v každom bode.</span>
               </motion.h1>
+
 
               <motion.p
                 initial="hidden"
@@ -98,11 +136,11 @@ const Hero = () => {
                 animate="show"
                 variants={fadeUp}
                 custom={3}
-                className="mt-10 flex flex-wrap items-center gap-6"
+                className="mt-8 md:mt-10 flex flex-wrap items-center gap-4 sm:gap-6"
               >
                 <Link
                   to="/kontakt"
-                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-4 text-sm tracking-wide shadow-elegant hover:shadow-soft transition-all overflow-hidden"
+                  className="group relative inline-flex items-center gap-3 bg-primary text-primary-foreground px-6 sm:px-7 py-3.5 sm:py-4 text-sm tracking-wide shadow-elegant hover:shadow-soft transition-all overflow-hidden w-full sm:w-auto justify-center sm:justify-start"
                 >
                   <span className="absolute inset-0 bg-primary-glow translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                   <span className="relative">Nezáväzná konzultácia</span>
@@ -115,6 +153,7 @@ const Hero = () => {
                   Prezrieť služby
                 </Link>
               </motion.div>
+
             </div>
 
             {/* Image */}
@@ -146,28 +185,57 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/70 via-primary/10 to-transparent" />
 
                   {/* Floating badge */}
-                  <div className="absolute top-6 left-6 glass px-4 py-3 animate-float-slow">
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.9, ease }}
+                    className="absolute top-4 left-4 md:top-6 md:left-6 glass px-3 py-2 md:px-4 md:py-3 animate-float-slow"
+                  >
                     <div className="flex items-center gap-2 text-primary">
-                      <Compass className="w-4 h-4 text-accent" />
-                      <span className="text-[10px] tracking-[0.24em] uppercase font-medium">
+                      <motion.span
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                        className="inline-flex"
+                      >
+                        <Compass className="w-4 h-4 text-accent" />
+                      </motion.span>
+                      <span className="text-[9px] md:text-[10px] tracking-[0.24em] uppercase font-medium">
                         Autorizovaný geodet
                       </span>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-primary-foreground">
                     <div className="text-[10px] tracking-[0.28em] uppercase opacity-70 mb-1">
                       Terénne meranie
                     </div>
-                    <div className="font-serif text-2xl italic">Orava, 2025</div>
+                    <div className="font-serif text-xl md:text-2xl italic">Orava, 2025</div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.8, ease }}
+            className="hidden md:flex mt-16 items-center gap-3 text-primary/50"
+          >
+            <span className="text-[10px] tracking-[0.32em] uppercase">Scroll</span>
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-flex"
+            >
+              <ChevronDown className="w-4 h-4" />
+            </motion.span>
+          </motion.div>
         </div>
       </section>
+
 
       {/* CREDENTIALS STRIP */}
       <section className="relative border-y border-border bg-primary text-primary-foreground overflow-hidden">
@@ -179,7 +247,7 @@ const Hero = () => {
         />
         <div className="container relative grid grid-cols-2 md:grid-cols-4 divide-x divide-primary-foreground/10">
           {[
-            { k: "15+", v: "Rokov praxe" },
+            { k: <Counter to={15} suffix="+" />, v: "Rokov praxe" },
             { k: "GEO2", v: "Autorizácia" },
             { k: "PhD.", v: "Odbornosť" },
             { k: "±2 mm", v: "Presnosť merania" },
@@ -190,12 +258,13 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.08, ease }}
-              className="py-12 px-6 text-center group"
+              whileHover={{ y: -4 }}
+              className="py-10 md:py-12 px-4 md:px-6 text-center group cursor-default"
             >
-              <div className="font-serif text-4xl md:text-5xl text-accent-soft group-hover:text-accent transition-colors">
+              <div className="font-serif text-3xl sm:text-4xl md:text-5xl text-accent-soft group-hover:text-accent transition-colors">
                 {s.k}
               </div>
-              <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-primary-foreground/60">
+              <div className="mt-2 md:mt-3 text-[9px] md:text-[10px] tracking-[0.28em] uppercase text-primary-foreground/60">
                 {s.v}
               </div>
             </motion.div>
@@ -203,16 +272,17 @@ const Hero = () => {
         </div>
       </section>
 
+
       {/* SERVICES */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-20 md:py-32 bg-background">
         <div className="container">
-          <div className="grid md:grid-cols-12 gap-12 mb-16">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
             <div className="md:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-5 md:mb-6">
                 <span className="hairline" />
                 <span className="eyebrow">Naša ponuka</span>
               </div>
-              <h2 className="font-serif text-4xl md:text-5xl text-primary-deep leading-[1.05] text-balance">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-primary-deep leading-[1.05] text-balance">
                 Komplexné geodetické <span className="italic text-primary/70">služby.</span>
               </h2>
             </div>
@@ -233,26 +303,26 @@ const Hero = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.06, ease }}
-                className="group relative grid md:grid-cols-12 gap-6 py-10 border-b border-border items-baseline transition-colors px-2 -mx-2 hover:bg-secondary/60"
+                className="group relative grid grid-cols-[auto_1fr] md:grid-cols-12 gap-x-4 gap-y-2 md:gap-6 py-7 md:py-10 border-b border-border md:items-baseline transition-colors px-2 -mx-2 hover:bg-secondary/60"
               >
-                <span className="absolute left-0 top-0 h-px w-0 bg-accent group-hover:w-full transition-all duration-700 ease-out" />
-                <div className="md:col-span-1 text-accent text-sm font-medium tracking-[0.2em]">
+                <span className="absolute left-0 bottom-0 h-px w-0 bg-accent group-hover:w-full transition-all duration-700 ease-out" />
+                <div className="md:col-span-1 text-accent text-xs md:text-sm font-medium tracking-[0.2em] pt-1 md:pt-0">
                   {s.n}
                 </div>
-                <h3 className="md:col-span-4 font-serif text-2xl md:text-3xl text-primary-deep leading-tight">
+                <h3 className="md:col-span-4 font-serif text-xl sm:text-2xl md:text-3xl text-primary-deep leading-tight">
                   {s.t}
                 </h3>
-                <p className="md:col-span-6 text-muted-foreground leading-relaxed">
+                <p className="col-start-2 md:col-start-auto md:col-span-6 text-sm md:text-base text-muted-foreground leading-relaxed">
                   {s.d}
                 </p>
-                <div className="md:col-span-1 md:text-right">
+                <div className="hidden md:block md:col-span-1 md:text-right">
                   <ArrowRight className="inline-block w-4 h-4 text-muted-foreground/50 group-hover:text-accent group-hover:translate-x-2 transition-all duration-500" />
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-12 flex justify-end">
+          <div className="mt-10 md:mt-12 flex justify-end">
             <Link to="/sluzby" className="story-link inline-flex items-center gap-2 text-sm text-primary py-1">
               Všetky služby <ArrowRight className="w-4 h-4" />
             </Link>
@@ -261,7 +331,7 @@ const Hero = () => {
       </section>
 
       {/* CTA */}
-      <section className="pb-24 md:pb-32 bg-background">
+      <section className="pb-20 md:pb-32 bg-background">
         <div className="container">
           <motion.div
             ref={ctaRef}
@@ -271,9 +341,10 @@ const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
-            className="group/cta relative overflow-hidden bg-hero-gradient text-primary-foreground p-12 md:p-20 shadow-elegant"
+            className="group/cta relative overflow-hidden bg-hero-gradient text-primary-foreground p-8 sm:p-12 md:p-20 shadow-elegant"
             style={{ ["--mx" as string]: "50%", ["--my" as string]: "50%" }}
           >
+
             <div className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{
                 backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
@@ -325,10 +396,11 @@ const Hero = () => {
                     Kontakt
                   </span>
                 </div>
-                <h2 className="font-serif text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em] text-balance">
+                <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.02] tracking-[-0.02em] text-balance">
                   Potrebujete geodeta?<br />
                   <span className="italic text-accent-soft">Ozvite sa.</span>
                 </h2>
+
               </div>
               <div className="md:col-span-4 md:text-right space-y-5">
                 <div>
