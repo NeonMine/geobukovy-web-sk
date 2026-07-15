@@ -184,28 +184,57 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-primary-deep/70 via-primary/10 to-transparent" />
 
                   {/* Floating badge */}
-                  <div className="absolute top-6 left-6 glass px-4 py-3 animate-float-slow">
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.9, ease }}
+                    className="absolute top-4 left-4 md:top-6 md:left-6 glass px-3 py-2 md:px-4 md:py-3 animate-float-slow"
+                  >
                     <div className="flex items-center gap-2 text-primary">
-                      <Compass className="w-4 h-4 text-accent" />
-                      <span className="text-[10px] tracking-[0.24em] uppercase font-medium">
+                      <motion.span
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                        className="inline-flex"
+                      >
+                        <Compass className="w-4 h-4 text-accent" />
+                      </motion.span>
+                      <span className="text-[9px] md:text-[10px] tracking-[0.24em] uppercase font-medium">
                         Autorizovaný geodet
                       </span>
                     </div>
-                  </div>
+                  </motion.div>
 
                   {/* Caption */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-primary-foreground">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 text-primary-foreground">
                     <div className="text-[10px] tracking-[0.28em] uppercase opacity-70 mb-1">
                       Terénne meranie
                     </div>
-                    <div className="font-serif text-2xl italic">Orava, 2025</div>
+                    <div className="font-serif text-xl md:text-2xl italic">Orava, 2025</div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4, duration: 0.8, ease }}
+            className="hidden md:flex mt-16 items-center gap-3 text-primary/50"
+          >
+            <span className="text-[10px] tracking-[0.32em] uppercase">Scroll</span>
+            <motion.span
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-flex"
+            >
+              <ChevronDown className="w-4 h-4" />
+            </motion.span>
+          </motion.div>
         </div>
       </section>
+
 
       {/* CREDENTIALS STRIP */}
       <section className="relative border-y border-border bg-primary text-primary-foreground overflow-hidden">
