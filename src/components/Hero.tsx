@@ -111,11 +111,12 @@ const Hero = () => {
                 animate="show"
                 variants={fadeUp}
                 custom={1}
-                className="font-serif text-5xl md:text-6xl lg:text-[5.25rem] leading-[1] tracking-[-0.02em] text-primary-deep text-balance"
+                className="font-serif text-[2.75rem] sm:text-5xl md:text-6xl lg:text-[5.25rem] leading-[1.02] md:leading-[1] tracking-[-0.02em] text-primary-deep text-balance"
               >
                 Presné merania.<br />
                 <span className="italic font-light text-primary/85">Dôvera v každom bode.</span>
               </motion.h1>
+
 
               <motion.p
                 initial="hidden"
