@@ -274,15 +274,15 @@ const Hero = () => {
 
 
       {/* SERVICES */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-20 md:py-32 bg-background">
         <div className="container">
-          <div className="grid md:grid-cols-12 gap-12 mb-16">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-12 mb-12 md:mb-16">
             <div className="md:col-span-5">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-5 md:mb-6">
                 <span className="hairline" />
                 <span className="eyebrow">Naša ponuka</span>
               </div>
-              <h2 className="font-serif text-4xl md:text-5xl text-primary-deep leading-[1.05] text-balance">
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl text-primary-deep leading-[1.05] text-balance">
                 Komplexné geodetické <span className="italic text-primary/70">služby.</span>
               </h2>
             </div>
@@ -303,26 +303,26 @@ const Hero = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.06, ease }}
-                className="group relative grid md:grid-cols-12 gap-6 py-10 border-b border-border items-baseline transition-colors px-2 -mx-2 hover:bg-secondary/60"
+                className="group relative grid grid-cols-[auto_1fr] md:grid-cols-12 gap-x-4 gap-y-2 md:gap-6 py-7 md:py-10 border-b border-border md:items-baseline transition-colors px-2 -mx-2 hover:bg-secondary/60"
               >
-                <span className="absolute left-0 top-0 h-px w-0 bg-accent group-hover:w-full transition-all duration-700 ease-out" />
-                <div className="md:col-span-1 text-accent text-sm font-medium tracking-[0.2em]">
+                <span className="absolute left-0 bottom-0 h-px w-0 bg-accent group-hover:w-full transition-all duration-700 ease-out" />
+                <div className="md:col-span-1 text-accent text-xs md:text-sm font-medium tracking-[0.2em] pt-1 md:pt-0">
                   {s.n}
                 </div>
-                <h3 className="md:col-span-4 font-serif text-2xl md:text-3xl text-primary-deep leading-tight">
+                <h3 className="md:col-span-4 font-serif text-xl sm:text-2xl md:text-3xl text-primary-deep leading-tight">
                   {s.t}
                 </h3>
-                <p className="md:col-span-6 text-muted-foreground leading-relaxed">
+                <p className="col-start-2 md:col-start-auto md:col-span-6 text-sm md:text-base text-muted-foreground leading-relaxed">
                   {s.d}
                 </p>
-                <div className="md:col-span-1 md:text-right">
+                <div className="hidden md:block md:col-span-1 md:text-right">
                   <ArrowRight className="inline-block w-4 h-4 text-muted-foreground/50 group-hover:text-accent group-hover:translate-x-2 transition-all duration-500" />
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-12 flex justify-end">
+          <div className="mt-10 md:mt-12 flex justify-end">
             <Link to="/sluzby" className="story-link inline-flex items-center gap-2 text-sm text-primary py-1">
               Všetky služby <ArrowRight className="w-4 h-4" />
             </Link>
@@ -331,7 +331,7 @@ const Hero = () => {
       </section>
 
       {/* CTA */}
-      <section className="pb-24 md:pb-32 bg-background">
+      <section className="pb-20 md:pb-32 bg-background">
         <div className="container">
           <motion.div
             ref={ctaRef}
@@ -341,9 +341,10 @@ const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease }}
-            className="group/cta relative overflow-hidden bg-hero-gradient text-primary-foreground p-12 md:p-20 shadow-elegant"
+            className="group/cta relative overflow-hidden bg-hero-gradient text-primary-foreground p-8 sm:p-12 md:p-20 shadow-elegant"
             style={{ ["--mx" as string]: "50%", ["--my" as string]: "50%" }}
           >
+
             <div className="absolute inset-0 opacity-[0.07] pointer-events-none"
               style={{
                 backgroundImage: "radial-gradient(hsl(var(--primary-foreground)) 1px, transparent 1px)",
