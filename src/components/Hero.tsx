@@ -72,10 +72,20 @@ const Hero = () => {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-32 md:pt-36 pb-20 md:pb-28 overflow-hidden bg-subtle-gradient">
-        {/* Ambient orbs */}
-        <div className="absolute -top-40 -right-40 w-[520px] h-[520px] rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 -left-32 w-[420px] h-[420px] rounded-full bg-accent/15 blur-3xl pointer-events-none" />
+      <section className="relative pt-28 md:pt-36 pb-16 md:pb-28 overflow-hidden bg-subtle-gradient">
+        {/* Animated ambient orbs */}
+        <motion.div
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-40 -right-40 w-[420px] md:w-[520px] h-[420px] md:h-[520px] rounded-full bg-primary/10 blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -20, 0], y: [0, 25, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 -left-32 w-[320px] md:w-[420px] h-[320px] md:h-[420px] rounded-full bg-accent/15 blur-3xl pointer-events-none"
+        />
+
+
 
         <div className="container relative">
           <div className="grid md:grid-cols-12 gap-12 md:gap-14 items-center">
